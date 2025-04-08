@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Upload, LoaderCircle, Mail, Sparkles } from 'lucide-react';
+import { Upload, LoaderCircle, Mail, Sparkles, FileText } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import './App.css';
@@ -46,8 +46,33 @@ function App() {
         </h1>
 
         <div className="flex flex-col gap-4 mb-4">
-          <input type="file" accept=".pdf,.docx" onChange={e => setJdFile(e.target.files[0])} />
-          <input type="file" accept=".pdf,.docx" onChange={e => setResumeFile(e.target.files[0])} />
+          <div>
+            <label htmlFor="jd-file" className="file-input-label">
+              <FileText className="mr-2" />
+              Choose Job Description
+            </label>
+            <input
+              id="jd-file"
+              type="file"
+              accept=".pdf,.docx"
+              onChange={e => setJdFile(e.target.files[0])}
+            />
+            {jdFile && <div className="file-name">{jdFile.name}</div>}
+          </div>
+
+          <div>
+            <label htmlFor="resume-file" className="file-input-label">
+              <FileText className="mr-2" />
+              Choose Resume
+            </label>
+            <input
+              id="resume-file"
+              type="file"
+              accept=".pdf,.docx"
+              onChange={e => setResumeFile(e.target.files[0])}
+            />
+            {resumeFile && <div className="file-name">{resumeFile.name}</div>}
+          </div>
         </div>
 
         <Button className="w-full" onClick={handleMatch}>
